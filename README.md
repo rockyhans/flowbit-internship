@@ -92,8 +92,7 @@ Backend verifies secret, updates ticket status
 UI polls every 5s → updated live
 
 🗂️ Directory Structure
-bash
-Copy code
+````
 .
 ├── backend/
 │   ├── models/
@@ -108,6 +107,7 @@ Copy code
 │   └── seed.js
 ├── docker-compose.yml
 └── README.md
+````
 🖼️ Architecture Diagram
 Include this as a PNG/JPG or hand-drawn diagram (name it architecture.png or embed it like below)
 
