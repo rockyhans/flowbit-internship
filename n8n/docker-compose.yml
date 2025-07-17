@@ -1,0 +1,65 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo:6.0
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build: ./backend
+    container_name: backend
+    ports:
+      - "4000:4000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/flowbit
+      - JWT_SECRET=supersecretkey
+      - WEBHOOK_SECRET=workflow_secret
+      - N8N_URL=http://n8n:5678/webhook/trigger
+    depends_on:
+      - mongo
+
+  frontend-shell:
+    build: ./frontend-shell
+    container_name: frontend-shell
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  support-tickets-app:
+    build: ./support-tickets-app
+    container_name: support-tickets-app
+    ports:
+      - "3001:3001"
+    depends_on:
+      - backend
+
+  n8n:
+    image: n8nio/n8n
+    container_name: n8n
+    restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=false
+    volumes:
+      - n8n_data:/home/node/.n8n
+
+  tunnel:
+    image: wernight/ngrok
+    container_name: ngrok
+    ports:
+      - "4040:4040"
+    environment:
+      - NGROK_AUTHTOKEN=your_token_here
+      - NGROK_PORT=n8n:5678
+    depends_on:
+      - n8n
+
+volumes:
+  mongo_data:
+  n8n_data:
