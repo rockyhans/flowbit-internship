@@ -41,57 +41,41 @@ cd flowbit-assignment
 docker-compose up --build
 ```
 This will spin up:
-
 MongoDB
-
 Backend API
-
 React Shell App
-
 SupportTicketsApp (Remote)
-
 n8n (workflow engine)
-
 Local tunnel (for webhook testing)
 
-🧪 Seed Script
+## 🧪 Seed Script
 ```
 npm run seed
 ```
-Adds:
-
+# Adds:
 Tenants: LogisticsCo, RetailGmbH
-
-Admins:
-
+# Admins:
 admin1@logistics.com / 123456
-
 admin2@retail.com / 123456
 
-🧪 Test (Tenant Isolation)
+## 🧪 Test (Tenant Isolation)
 Run the Jest test:
 
 ```
 npm test
 ```
-This ensures:
-
+# This ensures:
 Admin A cannot access tickets from Admin B’s tenant.
-
 Role-based access to /admin/* is enforced.
 
-🔁 Workflow Flow
+## 🔁 Workflow Flow
 User (Admin) submits a ticket
-
 Backend triggers n8n webhook
-
 n8n runs automation, then calls /webhook/ticket-done
-
 Backend verifies secret, updates ticket status
-
 UI polls every 5s → updated live
 
-🗂️ Directory Structure
+### 🗂️ Directory Structure
 ````
 .
 ├── backend/
@@ -108,50 +92,39 @@ UI polls every 5s → updated live
 ├── docker-compose.yml
 └── README.md
 ````
-🖼️ Architecture Diagram
-Include this as a PNG/JPG or hand-drawn diagram (name it architecture.png or embed it like below)
+### 🖼️ Architecture Diagram
+Include this as a PNG/JPG or hand-drawn diagram
 
-markdown
-Copy code
 ![Architecture](./architecture.png)
-It should show:
 
+# It shows:
 React Shell
-
 SupportTicketsApp (Remote via Module Federation)
-
 Backend API
-
 MongoDB
-
 n8n (Workflow)
-
 Webhook callback
-
 Polling/WebSocket to UI
 
-🎥 Demo Video
+# 🎥 Demo Video
 Include a 2–3 min demo showing:
-
 Login as both tenants
-
 Create a ticket
-
 Trigger n8n flow
-
 Ticket status updated live
-
 Show RBAC + tenant isolation
 
-🛑 Known Limitations
+## 🛑 Known Limitations
 Currently using polling (can upgrade to WebSocket)
-
 Hardcoded use-cases in registry.json
-
 Basic error handling (expandable in production)
 
-💼 Author
-Danish Rizwan
-Full Stack Developer — LinkedIn
+### 💼 Author
+<table> <tr> <td align="center"> <img src="https://avatars.githubusercontent.com/u/164065390?v=4" width="80px;" alt="Danish Rizwan"/> <br /><sub><b>Danish Rizwan</b></sub><br /> <sub>Frontend Developer</sub> </td> </tr> </table>
+
+📬 Contact
+<br>
+📧 Email: rdanishrizwan@example.com
+<br>
 
 ---
