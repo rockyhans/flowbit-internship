@@ -95,7 +95,7 @@ npm test
 ### 🖼️ Architecture Diagram
 - Include this as a PNG/JPG or hand-drawn diagram
 
-![Architecture](./architecture.png)
+![Architecture](./architecture.jpg)
 
 # It shows:
 - React Shell
